@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static "img/logo-web.png" %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Titan+One&display=swap" rel="stylesheet">
+    <title>{{ judul }}</title>
+    <style>
+       .card img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        } 
+
+        nav li {
+            float: left;
+}
+
+        nav a:hover {
+            background-color: rgb(219, 80, 30);
+    }
+
+    .content {
+            box-shadow: 0 4px 8px 0 #555;
+            margin: auto;
+            max-width: 100%;
+            font-family: 'Quicksand', sans-serif;
+            text-align: justify;
+            list-style: none;
+            padding: 10px 10px;
+            overflow: hidden;
+        }
+
+        .logo-content {
+            box-shadow: 0 4px 8px 0 #555;
+            margin: auto;
+            max-width: 20%;
+            font-family: 'Quicksand', sans-serif;
+            text-align: justify;
+            list-style: none;
+            padding: 20px 10px;
+            overflow: hidden;
+            padding-top: 10px;
+        }
+
+        .logo-content img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        } 
+
+        .card {
+        box-shadow: 0 4px 8px 0 #555;
+        margin: auto;
+        max-width: 500px;
+        font-family: 'Quicksand', sans-serif;
+        text-align: center;
+        list-style: none;
+        padding: 10px 10px;
+        overflow: hidden;
+    }
+
+    header h1 {
+        font-family: 'Quicksand', sans-serif;
+        color: aliceblue;
+        text-align: center;
+    }
+
+    </style>
+
+</head>
+<body>
+
+    <header>
+            <h1> {{ judul }} </h1>
+            <img id="banner" src="{% static banner %}" alt="banner">
+
+        <nav>
+            <ul>
+                    <!-- templates tags -->
+                    {% for link,name in nav %}
+
+                        <li>
+                            <a href="{{ link }}">{{ name }}</a>
+                        </li>
+
+                    {% endfor %}
+
+            </ul>
+        </nav>
+    </header>
+
+    <div class="logo-content">
+        <img src="{% static content %}" alt="logo-content">
+    </div>
+    <div class="content">
+        <section>
+                <h2> Welcome to {{ subjudul }}</h2>
+                <p>{{ desc_blogs }}</p>
+                <p>{{ desc_blogs1 }}</p>
+                <p>{{ desc_blogs2 }}</p>
+                <p>{{ desc_blogs3 }}</p>
+        </section>
+
+        <div class="detail">
+            {% block blog %}
+            <h3>{{ blog.title }}</h3>
+            <p>{{ blog.desc }}</p>
+            <p>{{ blog.desc1 }}</p>
+            <p>{{ blog.desc2 }}</p>
+            <p>{{ blog.desc3 }}</p>
+            <p>{{ blog.desc5 }}</p>
+            {% endblock %}
+        </div>
+
+        <ul>
+                {% for blog in blogs %}
+                <li>
+                    <div class="card">
+                        <img src="{% static logo %}" alt="logo">
+                        <h3>{{ blog.title }}</h3>
+                        <p>{{ blog.created_at }}</p>
+                        <p><a href="/detail?id={{ blog.id }}"><button>To details Blogs</button></a></p>
+                    </div>
+                </li>
+                {% endfor %}
+
+        </ul>
+        
+    </div>
+
+</body>
+
+<footer>
+    <p>Project UAS Bahasa Pemograman Kelompok 7</p>
+    <p>@copyright2022</p>
+</footer>
+
+</html>
